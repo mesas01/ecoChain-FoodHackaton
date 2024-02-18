@@ -25,22 +25,21 @@ body {
     position: relative;
     display: grid;
     grid-template-rows: 100px 1fr;
-    color: #fff;
+    color: #000000;
 }
 
-.hero::before {
-    content: "";
+.hero video {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(180deg, #0000008c 0%, #0000008c 100%), url('../images/computer.jpg');
-    background-size: cover;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 95%, 0 80%);
-    z-index: -1;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Asegura que el video quede detrás del contenido */
+    object-fit: cover; /* Cubre el área sin perder las proporciones */
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 95%, 0 80%); /* Mantiene la forma original que tenías para tu fondo */
 }
-
 
 /* Nav */
 
@@ -51,8 +50,19 @@ body {
     align-items: center;
 }
 
+.nav__logo {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 5px 15px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
 .nav__title {
-    font-weight: 300;
+    font-size: 2.5rem; /* Ajusta el tamaño según necesites */
+    color: #FFF; /* Color blanco para contraste */
+    font-weight: 700; /* Más grueso para mayor impacto */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para mejorar la legibilidad */
 }
 
 .nav__link {
@@ -65,17 +75,23 @@ body {
     
 }
 
-.nav__items a:hover{
-    list-style: none;
-    border-radius: 8px;
-    background-color: #ffffff5e;
+.nav__items {
+    list-style: none; /* Elimina los bullets de la lista si no lo has hecho ya */
 }
 
 .nav__links {
-    color: #fff;
-    text-decoration: none;
+    display: inline-block; /* Hace que el enlace sea un bloque para aplicar padding y bordes */
+    padding: 5px 15px; /* Ajusta el padding según necesites */
+    margin: 0 5px; /* Añade un poco de margen entre los enlaces */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semitransparente */
+    color: #FFFFFF; /* Texto blanco */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el hover */
 }
 
+.nav__links:hover {
+    background-color: #ffffff3b; /* Cambia el color de fondo al pasar el mouse */
+}
 
 .nav__menu {
     margin-left: auto;
@@ -95,9 +111,9 @@ body {
 
 
 /* Hero container */
-
 .hero__container {
     max-width: 800px;
+    max-height: 300px;
     --padding-container: 0;
     display: grid;
     grid-auto-rows: max-content;
@@ -105,6 +121,11 @@ body {
     gap: 1em;
     padding-bottom: 100px;
     text-align: center;
+    margin: 0 auto; /* Centra el contenedor en la sección hero */
+    background-color: rgba(0, 0, 0, 0.836); /* Fondo negro semitransparente */
+    border-radius: 25px; /* Esquinas redondeadas */
+    padding: 20px; /* Espaciado dentro del contenedor */
+    color: #FFFFFF; /* Texto blanco */
 }
 
 .hero__title {
@@ -123,6 +144,7 @@ body {
     text-decoration: none;
     padding: 13px 30px;
     border-radius: 32px;
+    margin-bottom: 50px; /* Añade un margen inferior para crear espacio */
 }
 
 /* About */
@@ -212,17 +234,20 @@ body {
     align-items: center;
 }
 
-.price__element{
-    background-color: #e5e5f7;
+.price__element {
+    position: relative;
     text-align: center;
-    border-radius: 10px;
-    width: 330px;
-    padding: 40px;
-    --color-plan: #696871;
-    --color-price: #1D293F;
-    --bg-cta: #fff;
-    --color-cta: #5454D4;
-    --color-items: #696871;
+    background-color: #e5e5f7; /* Mantenemos tu color de fondo */
+    border-radius: 10px; /* Bordes redondeados ya definidos */
+    padding: 40px; /* Espaciado interno ya definido */
+    overflow: hidden; /* Asegura que todo el contenido se ajuste dentro de los bordes redondeados */
+}
+
+.price__element img {
+    width: calc(100% - 80px); /* Ajusta el ancho de la imagen restando el padding horizontal */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    display: block; /* Elimina los espacios extra */
 }
 
 .price__element--best{
@@ -243,9 +268,15 @@ body {
     font-weight: 300;
 }
 
-.price__price{
-    font-size: 2.5rem;
-    color: var(--color-price);
+.price__price {
+    font-size: 2rem; /* Incrementa el tamaño de la fuente para hacerlo más grande */
+    color: var(--color-price); /* Utiliza la variable de color ya definida */
+    margin-top: 20px; /* Espacio entre la imagen y el texto del descuento */
+    padding: 10px 0; /* Espaciado interno para el texto del descuento */
+    width: auto; /* Ajusta el ancho automáticamente al contenido */
+    display: inline-block; /* Permite aplicar margen y centrar */
+    border-radius: 20px; /* Bordes redondeados para suavizar el diseño */
+    background-color: transparent; /* Quita el fondo gris, haciendo el fondo transparente */
 }
 
 .price__items{
@@ -258,15 +289,16 @@ body {
     color: var(--color-items);
 }
 
-.price__cta{
-    display: block;
-    padding: 20px 0;
-    border-radius: 10px;
-    text-decoration: none;
-    background-color: var(--bg-cta);
-    font-weight: 600;
-    color: var(--color-cta);
-    box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+.price__cta {
+    font-weight: 600; /* Ya definido */
+    background-color: #5454D4; /* O el color que prefieras para el botón */
+    color: white; /* Ya definido */
+    text-decoration: none; /* Ya definido */
+    padding: 13px 30px; /* Ya definido */
+    border-radius: 32px; /* Ya definido */
+    display: block; /* Cambia a bloque para aplicar margen */
+    margin: 20px auto 0; /* Añade margen superior y centra horizontalmente */
+    width: fit-content; /* Ajusta el ancho al contenido del botón */
 }
 
 /* Testimony */
